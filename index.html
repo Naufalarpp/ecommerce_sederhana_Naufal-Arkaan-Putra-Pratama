@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ioicons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- ioicons -->
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font -->
+    <!-- css -->
+    <style>
+      :root {
+        --primary: #e8a0b5;
+        --bg: #87ceeb;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+      }
+      body {
+        font-family: "poppins", sans-serif;
+        background: var(--primary);
+        min-height: 100vh;
+        margin: 0;
+        min-height: 2000px;
+      }
+      /* navbar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.4rem 7%;
+        background-color: #fce4ec;
+        border-bottom: 1px solid #d18b9e;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+      }
+      .navbar .navbar-logo {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #3d2b1f;
+        font-style: italic;
+      }
+      .navbar .navbar-logo span {
+        color: var(--primary);
+      }
+      .navbar .navbar-nav a {
+        color: #3d2b1f;
+        display: inline-block;
+        font-size: 1.4rem;
+        margin: 0 1rem;
+      }
+      .navbar .navbar-nav a:hover {
+        color: #ffffff;
+      }
+      .navbar .navbar-nav a::after {
+        content: "";
+        display: block;
+        padding-bottom: 0.5rem;
+        border-bottom: 0.1rem solid var(--primary);
+        transform: scaleX(0);
+        transition: 0.2s linear;
+      }
+      .navbar .navbar-nav a:hover::after {
+        transform: scaleX(0.5);
+      }
+
+      .navbar .navbar-extra a {
+        color: #3d2b1f;
+        margin: 0 0.5rem;
+      }
+      .navbar .navbar-extra a:hover {
+        color: #ffffff;
+      }
+
+      #hamburger-menu {
+        display: none;
+      }
+
+      /* hero section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background-image: url(IMG/MOOD.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+
+      .hero .content {
+        padding: 1.4rem 7%;
+        max-width: 60rem;
+      }
+
+      .hero .content h1 {
+        font-size: 5em;
+        color: #3d2b1f;
+        text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+        line-height: 1.2;
+      }
+
+      .hero .content h1 span {
+        color: var(--bg);
+      }
+
+      .hero .content p {
+        font-size: 1.8rem;
+        margin-top: 1rem;
+        line-height: 1.4;
+        font-weight: 400;
+        color: #3d2b1f;
+        text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+        mix-blend-mode: difference;
+      }
+
+      .hero .content .cta {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 1rem 2rem;
+        background-color: var(--bg);
+        color: #fff;
+        font-size: 1.6rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+      }
+      /* hero section */
+
+      /* about section */
+      .about {
+        padding: 10rem 7% 1.4rem;
+        /* background-color: #fff; */
+      }
+      .about h2 {
+        font-size: 3rem;
+        color: #3d2b1f;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .about h2 span {
+        color: var(--bg );
+      }
+
+      .about .row {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .about .about-img {
+        flex: 1 1 40rem;
+      }
+      .about .about-img img {
+        width: 100%;
+        border-radius: 1rem;
+      }
+      .about .content {
+        flex: 1 1 40rem;
+        font-size: 1.4rem;
+        line-height: 1.6;
+        color: #3d2b1f;
+      }
+      .about .content p {
+        margin-bottom: 1.5rem;
+      }
+      /* about section END */
+
+      /* menu section */
+      .menu h2 {
+        font-size: 3rem;
+        color: var(--bg);
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .menu h2 span {
+        color: #3d2b1f;
+      }
+      /* Container utama untuk mengatur baris menu */
+      .menu .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Agar menu berada di tengah */
+        gap: 2rem; /* Jarak antar kotak menu */
+        padding: 2rem;
+      }
+
+      /* Mengatur kotak setiap item menu */
+      .menu-item {
+        text-align: center;
+        width: 250px; /* Lebar standar kotak menu */
+        background-color: #fff; /* Background putih agar bersih */
+        padding: 1.5rem;
+        border-radius: 20px; /* Membuat sudut kotak melengkung */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Efek bayangan halus */
+      }
+
+      /* KUNCI UTAMA: Mengatur ukuran gambar */
+      .menu-item img {
+        width: 100%; /* Mengikuti lebar kotak .menu-item (250px) */
+        height: 200px; /* Tinggi tetap agar seragam */
+        object-fit: cover; /* Foto akan terpotong rapi, tidak gepeng */
+        border-radius: 15px; /* Melengkungkan sudut gambar */
+        margin-bottom: 1rem;
+      }
+
+      /* Gaya teks judul dan deskripsi */
+      .menu-item h3 {
+        margin: 0.5rem 0;
+        color: var(--primary); /* Warna pink sesuai tema kamu */
+      }   
+      .menu-item p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+      /* menu section END */
+
+      /* contact section */
+      .order {
+    padding: 5rem 7% 5rem;
+    background-color: #fff0f5; /* Pink sangat muda untuk background */
+}
+
+.order h2 {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    color: #ff69b4; /* Pink cerah */
+}
+.order h2 span {
+    color: #3d2b1f;
+}
+
+.order p {
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 3rem;
+}
+
+.order .row {
+    display: flex;
+    justify-content: center;
+}
+
+.order form {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ff69b4;
+    font-weight: bold;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ffb6c1; /* Pink muda */
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    border-color: #ff69b4;
+}
+
+.btn-wa {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-wa:hover {
+    background-color: #ff1493;
+    transform: translateY(-3px);
+}
+      /* contact section END */
+
+        /* lokasi section */
+        /* Container Utama Lokasi */
+.lokasi {
+    padding: 5rem 7% 5rem;
+    background-color: #ffffff; /* Latar putih agar peta menonjol */
+}
+
+.lokasi h2 {
+    text-align: center;
+    color: #ff69b4; /* Pink Yayamood */
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+}
+
+.lokasi p {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+/* Kotak Peta */
+.map-container {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3); /* Shadow warna pink transparan */
+    border: 5px solid #ffb6c1;
+}
+
+/* Tombol Rute (Navigasi) */
+.btn-pink {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1.2rem 2.5rem;
+    background-color: #ff69b4;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+.btn-pink:hover {
+    background-color: #ff1493;
+    transform: translateY(-5px); /* Efek melayang saat di-hover */
+}
+        /* lokasi section END */
+
+
+      /* media querist */
+
+      /* laptop */
+      @media (max-width: 1336px) {
+        html {
+          font-size: 75%;
+        }
+      }
+      /* tablet */
+      @media (max-width: 768px) {
+        html {
+          font-size: 62.5%;
+        }
+
+        /*  */
+        #hamburger-menu {
+          display: inline-block;
+        }
+
+        .navbar .navbar-nav {
+          position: absolute;
+          top: 100%;
+          right: -100%;
+          background-color: #fff;
+          width: 30rem;
+          height: 100vh;
+          transition: 0.5s;
+        }
+        .navbar .navbar-nav.active {
+          right: 0;
+        }
+        .navbar .navbar-nav a {
+          color: var(--bg);
+          display: block;
+          margin: 1.5rem;
+          padding: 0.5rem;
+          font-size: 2rem;
+        }
+        .navbar .navbar-nav a::after {
+          transform-origin: 0 0;
+        }
+        .navbar .navbar-nav a:hover::after {
+          transform: scaleX(0.2);
+        }
+        .about .row .about-img img {
+          /* height: 24rem; */
+          object-fit: cover;
+          object-position: center;
+        }
+
+        .about .row .content {
+          font-size: 1.2rem;
+        }
+        
+      }
+      footer {
+        text-align: center;
+        padding: 3rem;
+        background-color: #fce4ec;
+        color: #3d2b1f;
+        font-size: 0.9rem;
+      }
+
+      /* mobile phone */
+      @media (max-width: 450px) {
+        html {
+          font-size: 55%;
+        }
+      }
+    </style>
+    <!-- css -->
+    <title>yaya mood</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="#" class="navbar-logo">yaya mood <span>drink.</span></a>
+
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu</a>
+        <a href="#order">pemesanan</a>
+      </div>
+      <div class="navbar-extra">
+        <a href="#" id="search"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+    <!-- nav END -->
+
+    <!-- hero section -->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>Mood Booster <span>dalam Gelas</span></h1>
+        <p>Mood lagi berantakan? Pop Ice-in aja dulu.</p>
+        <a href="#" class="cta">Beli Sekarang</a>
+      </main>
+    </section>
+
+    <!-- hero section END -->
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+      <h2><span>Tentang</span>Kami</h2>
+      <div class="row">
+        <div class="about-img">
+          <img src="IMG/ABOUT.jpeg" alt="Tentang Kami">
+        </div>
+        <div class="content">
+          <p>
+            Yaya Mood Drink adalah minuman yang dirancang khusus untuk
+            meningkatkan suasana hati Anda. Dengan berbagai varian rasa yang
+            lezat dan menyegarkan, Yaya Mood Drink hadir untuk menemani
+            momen-momen bahagia Anda. Setiap tegukan Yaya Mood Drink
+            dipenuhi dengan kebaikan alami yang dapat membantu mengurangi stres
+            dan meningkatkan energi positif dalam diri Anda. Nikmati sensasi
+            menyegarkan dari Yaya Mood Drink dan rasakan perubahan mood yang
+            lebih baik setiap harinya!
+          </p>
+      </div>
+    </section>
+    <!-- ABOUT SECTION END -->
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+      <h2><span>Menu</span>Kami</h2>
+      <div class="row">
+        <div class="menu-item">
+          <img src="IMG/1.jpeg" alt="Menu 1">
+          <h3>Menu 1</h3>
+          <p>Deskripsi menu 1</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/2.jpeg" alt="Menu 2">
+          <h3>Menu 2</h3>
+          <p>Deskripsi menu 2</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/3.jpeg" alt="Menu 3">
+          <h3>Menu 3</h3>
+          <p>Deskripsi menu 3</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/4.jpeg" alt="Menu 4">
+          <h3>Menu 4</h3>
+          <p>Deskripsi menu 4</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/5.jpeg" alt="Menu 5">
+          <h3>Menu 5</h3>
+          <p>Deskripsi menu 5</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/6.jpeg" alt="Menu 6">
+          <h3>Menu 6</h3>
+          <p>Deskripsi menu 6</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/7.jpeg" alt="Menu 7">
+          <h3>Menu 7</h3>
+          <p>Deskripsi menu 7</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/8.jpeg" alt="Menu 8">
+          <h3>Menu 8</h3>
+          <p>Deskripsi menu 8</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/9.jpeg" alt="Menu 9">
+          <h3>Menu 9</h3>
+          <p>Deskripsi menu 9</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/10.jpeg" alt="Menu 10">
+          <h3>Menu 10</h3>
+          <p>Deskripsi menu 10</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/11.jpeg" alt="Menu 11">
+          <h3>Menu 11</h3>
+          <p>Deskripsi menu 11</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/12.jpeg" alt="Menu 12">
+          <h3>Menu 12</h3>
+          <p>Deskripsi menu 12</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/13.jpeg" alt="Menu 13">
+          <h3>Menu 13</h3>
+          <p>Deskripsi menu 13</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/14.jpeg" alt="Menu 14">
+          <h3>Menu 14</h3>
+          <p>Deskripsi menu 14</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/15.jpeg" alt="Menu 15">
+          <h3>Menu 15</h3>
+          <p>Deskripsi menu 15</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/16.jpeg" alt="Menu 16">
+          <h3>Menu 16</h3>
+          <p>Deskripsi menu 16</p>
+        </div>
+        <div class="menu-item">
+          <img src="IMG/17.jpeg" alt="Menu 17">
+          <h3>Menu 17</h3>
+          <p>Deskripsi menu 17</p>
+        </div>
+      </div>
+    </section>
+    <!-- Menu Section END -->
+
+    <!-- contact section -->
+    <section id="order" class="order">
+    <h2><span>Formulir</span> Pemesanan</h2>
+    <p>Minat dengan kesegaran Yayamood? Isi data di bawah ini.</p>
+
+    <div class="row">
+        <form id="whatsappForm">
+            <div class="input-group">
+                <label>Nama</label>
+                <input type="text" id="name" placeholder="Masukkan nama Anda..." required>
+            </div>
+            <div class="input-group">
+                <label>Nomor WhatsApp</label>
+                <input type="number" id="phone" placeholder="Contoh: 08123xxx" required>
+            </div>
+            <div class="input-group">
+                <label>Pilih Menu</label>
+                <select id="product">
+                    <option value="Pop Ice Taro">Pop Ice Taro</option>
+                    <option value="Pop Ice Cokelat">Pop Ice Cokelat</option>
+                    <option value="Pop Ice Mangga">Pop Ice Mangga</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Jumlah Pesanan</label>
+                <input type="number" id="qty" value="1" min="1">
+            </div>
+            <div class="input-group">
+                <label>Catatan (Toping/Request)</label>
+                <textarea id="notes" placeholder="Contoh: Tambah boba, jangan terlalu manis..."></textarea>
+            </div>
+            <button type="button" onclick="sendToWhatsApp()" class="btn-wa">
+                KIRIM KE WHATSAPP <i class="fab fa-whatsapp"></i>
+            </button>
+        </form>
+    </div>
+</section>
+    <!-- contact section END -->
+
+    <!-- maps -->
+     <section id="lokasi" class="lokasi">
+    <h2><span>Lokasi</span> Kami</h2>
+    <p>Mampir yuk ke outlet Yayamood Drink terdekat!</p>
+    
+    <div class="map-container">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.334468676231!2d107.838581!3d-6.9645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTcnNTIuMiJTIDEwN8KwNTAnMTguOSJF!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+        width="100%" 
+        height="450" 
+        style="border:0; border-radius: 15px;" 
+        allowfullscreen="" 
+        loading="lazy">
+    </iframe>
+</div>
+    <div style="text-align: center; margin-top: 20px;">
+    <a href="https://www.google.com/maps/dir/?api=1&destination=-6.9645,107.838581" 
+       target="_blank" 
+       class="btn-pink">
+       DAPATKAN RUTE KE YAYAMOOD DRINK <i class="fas fa-route"></i>
+    </a>
+</div>
+</section>
+<footer>
+    <p>&copy; 2023 Yayamood Drink. All rights reserved. Naufal Arkaan Putra Pratama</p>
+</footer>
+
+
+
+    <!-- LOGIKA WA -->
+    <script>function sendToWhatsApp() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const product = document.getElementById('product').value;
+    const qty = document.getElementById('qty').value;
+    const notes = document.getElementById('notes').value;
+
+    if (name == "" || phone == "") {
+        alert("Nama dan Nomor WA wajib diisi ya!");
+        return;
+    }
+
+    const waNumber = "6281319063285"; // GANTI DENGAN NOMOR WA KAMU (AWALI DENGAN 62)
+    
+    const message = `Halo Yayamood Drink!%0A%0A` +
+                    `*Nama:* ${name}%0A` +
+                    `*No. WA:* ${phone}%0A` +
+                    `*Pesanan:* ${product} (${qty} cup)%0A` +
+                    `*Catatan:* ${notes}%0A%0A` +
+                    `Tolong segera diproses ya, terima kasih!`;
+
+    window.open(`https://wa.me/${waNumber}?text=${message}`, '_blank');
+} </script>
+
+    <!-- feather -->
+    <script>
+      feather.replace();
+    </script>
+    <!-- feather -->
+
+    <!-- js -->
+    <script>
+      // toggle class active
+      const navbarNav = document.querySelector(".navbar-nav");
+      // ketika hambuer di klik
+      document.querySelector("#hamburger-menu").onclick = () => {
+        navbarNav.classList.toggle("active");
+      };
+
+      //   bisa klik dimana saja
+      const hamburger = document.querySelector("#hamburger-menu");
+      document.addEventListener("click", function (e) {
+        if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)) {
+          navbarNav.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
